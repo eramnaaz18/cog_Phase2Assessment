@@ -1,0 +1,43 @@
+form{
+    padding: 2px;
+    height: auto;
+}
+button{
+    height: 40px;
+}
+
+#search{
+    text-align: center;
+    
+}
+
+#end{
+    height: 40px;
+    margin-top: 10px;
+}
+
+.fa,
+.fas {
+  font-family: 'FontAwesome';
+}
+
+ul li a.cart:hover {
+    text-decoration: none;
+    color: #f7ebcc;
+  }
+
+
+ 
+ul li a.cart .cart-basket {
+    font-size: .6rem;
+    position: absolute;
+    top: -6px;
+    right: -5px;
+    width: 15px;
+    height: 15px;
+    color: #fff;
+    background-color: #ffc62a;
+    border-radius: 50%;
+  } 
+
+

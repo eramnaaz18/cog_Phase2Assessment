@@ -1,0 +1,25 @@
+<!-- Displays the carousel 
+It has a for loop where it takes in all the five images of the slider and displays them one by one
+@carouselAnimation is for adding the animation to each of the images -->
+<div class="carousel">
+    <div *ngFor="let slide of slides; let i = index">
+      <img
+        *ngIf="i === currentSlide"
+        [src]="slide.src"
+        class="slide"
+        @carouselAnimation
+      />
+    </div>
+  
+    <!--The button controls for moving to next or previous image manually-->
+    <button class="control prev" (click)="onPreviousClick()">
+      <span class="arrow left"></span>
+    </button>
+    <button class="control next" (click)="onNextClick()">
+      <span class="arrow right"></span>
+    </button>
+
+   
+  </div>
+
+ 

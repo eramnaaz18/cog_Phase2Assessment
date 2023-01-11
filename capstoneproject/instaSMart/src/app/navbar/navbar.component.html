@@ -1,0 +1,45 @@
+<!-- The navbar section having all the important links to be visited-->
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">InstaSMart</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse justify-content" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" routerLink="/home" routerLinkActive="active">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Products</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#" tabindex="-1" aria-disabled="true" routerLink="/about" routerLinkActive="active">About Us</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#" tabindex="-1" aria-disabled="true" routerLink="/contact" routerLinkActive="active">Contact Us</a>
+          </li>
+        </ul>
+        <form class="d-flex">
+          <input class="form-control" type="search" placeholder="Search" aria-label="Search" style="width:500px">
+          <button class="btn btn-warning" type="submit"><span class="material-icons" id="search">search</span></button>
+        </form>
+        
+      </div>
+      <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent" id="end">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0 ">
+            <li class="nav-item">
+                <a class="nav-link cart position-relative d-inline-flex" href="#" tabindex="-1" aria-disabled="true">
+                    <i class="fas fa fa-shopping-cart fa-lg"></i>
+                    <span class="cart-basket d-flex align-items-center justify-content-center">
+                      0
+                    </span></a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#" tabindex="-1" aria-disabled="true">Login</a>
+              </li>
+        </ul>
+      </div>
+    </div>
+  </nav>

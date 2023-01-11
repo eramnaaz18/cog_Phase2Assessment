@@ -1,0 +1,108 @@
+<h1>Contact Us</h1>
+<form class="contact-form" [formGroup]="contactForm" (ngSubmit)="onSubmit()" >
+    <div class="form-group" id="form">
+    
+    <p>
+        <label for="firstname">
+            FirstName:
+        </label>
+        <input class="form-control" type="text" name="firstname" id="firstname" formControlName="firstname">
+    </p>
+
+    <div *ngIf="!firstname?.valid && (firstname?.dirty || firstname?.touched)" class="alert alert-danger" role="alert">
+        <div *ngIf="firstname?.errors?.['required']">
+            FirstName is required
+        </div>
+
+        <div *ngIf="firstname?.errors?.['minlength'] && !firstname?.errors?.['pattern']">
+            FirstName should have min 3 characters
+        </div>
+
+        <div *ngIf="firstname?.errors?.['maxlength'] && !firstname?.errors?.['pattern']">
+            FirstName should have max 20 characters
+        </div>
+
+        <div *ngIf="firstname?.errors?.['pattern']">
+            FirstName should contain only alphabets
+        </div>
+    </div>
+       
+
+    <p>
+        <label for="lastname">
+            LastName:
+        </label>
+        <input class="form-control" type="text" name="lastname" id="lastname" formControlName="lastname">
+    </p>
+
+    <div *ngIf="!lastname?.valid && (lastname?.dirty || lastname?.touched)" class="alert alert-danger" role="alert">
+        <div *ngIf="lastname?.errors?.['required']">
+            LastName is required
+        </div>
+
+        <div *ngIf="lastname?.errors?.['minlength'] && !lastname?.errors?.['pattern']">
+            LastName should have min 2 characters
+        </div>
+
+        <div *ngIf="lastname?.errors?.['maxlength'] && !lastname?.errors?.['pattern']">
+            LastName should have max 20 characters
+        </div>
+
+        <div *ngIf="lastname?.errors?.['pattern']">
+            LastName should contain only alphabets
+        </div>
+    </div>
+
+    <p>
+        <label for="store">
+            Store:
+        </label>
+        <select
+          class="custom-select mb-3"
+          (change)="changeStore($event)"
+          formControlName="store"
+        >
+          <option value="">Choose Store</option>
+          <option *ngFor="let store of stores" [ngValue]="store">
+            {{ store }}
+          </option>
+        </select>
+    </p>
+
+    <div *ngIf="!store?.valid && (store?.dirty || store?.touched)" class="alert alert-danger" role="alert">
+        <div *ngIf="store?.errors?.['required']">
+            Store is required
+        </div>
+    </div>
+
+
+    <p>
+        <label for="comments">
+            Comments:
+        </label>
+        <textarea  rows = "5"  formControlName="comments"
+        class="form-control"  name="comments" id="comments" placeholder="Share your thoughts..."></textarea>
+    </p>
+
+    <div *ngIf="!comments?.valid && (comments?.dirty || comments?.touched)" class="alert alert-danger" role="alert">
+        <div *ngIf="comments?.errors?.['required']">
+            Comments is required
+        </div>
+
+        <div *ngIf="comments?.errors?.['minlength']">
+            Min 50 characters should be entered
+        </div>
+
+        <div *ngIf="comments?.errors?.['maxlength']">
+            Max 150 characters should be entered
+        </div>
+
+    </div>
+
+
+     <div class = "btn-group" style="width: 100%">
+            <button class="btn btn-warning" type="submit" [disabled]="!contactForm.valid" id="submit">Submit</button>
+            <button class="btn btn-outline-danger" (click)="resetForm()" id="reset">Reset</button>
+    </div>
+</div>
+</form>

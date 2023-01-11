@@ -1,0 +1,20 @@
+.header{
+  width: 100%;
+  padding: 0.5rem;
+  background-color: lightgrey;
+  text-align: center;
+  font-weight: bold;
+}
+
+h2{
+  padding-top: 20px;
+}
+
+.container {
+    display: block;
+    height: 500px;
+    width: auto;
+    padding: 2em;
+  }
+
+
