@@ -1,0 +1,83 @@
+[
+    {
+        "id": 1, 
+        "name": "Redmi",
+        "brand": "Xiaomi", 
+        "price": 12500, 
+        "image":"../../assets/images/redmi.jpg",
+        "category":"mobile", 
+        "rating": 4.2, 
+        "qty": 1
+    },
+    {
+        "id": 2,
+        "name": "Galaxy J8",
+        "brand": "Samsung",
+        "price": 8000, 
+        "image":"../../assets/images/samsung.jpg", 
+        "category":"mobile",
+        "rating": 4.5,
+        "qty": 1
+    },
+    {
+        "id": 3,
+        "name": "Yellow Top", 
+        "brand": "Vero Moda", 
+        "price": 1000, 
+        "image":"../../assets/images/yellow.jpg", 
+        "category":"clothing",
+        "rating": 4, 
+        "qty": 1
+    },
+    {
+        "id": 4, 
+        "name": "Blue Faded Jeans", 
+        "brand": "Moda Rapido", 
+        "price": 2500, 
+        "image":"../../assets/images/blue.jpg",
+        "category":"clothing", 
+        "rating": 3.0, 
+        "qty": 1
+    },
+    {
+        "id": 5, 
+        "name": "Earphones", 
+        "brand": "BoAt", 
+        "price": 1599, 
+        "image":"../../assets/images/ear.jpg",
+        "category":"accessories", 
+        "rating": 2.8, 
+        "qty": 1
+    },
+    {
+        "id": 6, 
+        "name": "ThinkPad", 
+        "brand": "Lenovo", 
+        "price": 45000, 
+        "image":"../../assets/images/lenovo.jpg", 
+        "category":"laptop", 
+        "rating": 4.5, 
+        "qty": 1
+    },
+    {
+        "id": 7, 
+        "name": "BP Monitor", 
+        "brand": "Dr Morepen", 
+        "price": 2500, 
+        "image":"../../assets/images/bp.jpg", 
+        "category":"healthDevices", 
+        "rating": 3.5, 
+        "qty": 1
+    },
+    {
+        "id": 8, 
+        "name": "Thermometer", 
+        "brand": "HealthLine", 
+        "price": 350, 
+        "image":"../../assets/images/thermo.jpg", 
+        "category":"healthDevices", 
+        "rating": 3.8, 
+        "qty": 1
+    }
+
+]

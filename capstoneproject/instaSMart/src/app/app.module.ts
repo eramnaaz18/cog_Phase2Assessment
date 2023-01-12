@@ -14,6 +14,13 @@ import { FooterComponent } from './footer/footer.component';
 import { AboutUsComponent } from './about-us/about-us.component';
 import { ContactUsComponent } from './contact-us/contact-us.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { LoginComponent } from './login/login.component';
+import { MaterialsModule } from './materials-module/materials.module';
+import { HttpClientModule } from '@angular/common/http';
+import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
+import { DbService } from 'shared/db.service';
+import { AppEffects } from './app.effects';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -23,17 +30,22 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     CarouselComponent,
     FooterComponent,
     AboutUsComponent,
-    ContactUsComponent
+    ContactUsComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() }),
+    StoreDevtoolsModule.instrument(),
     StoreModule.forRoot({}, {}),
-    EffectsModule.forRoot([]),
+    EffectsModule.forRoot([AppEffects]),
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MaterialsModule,
+    HttpClientModule,
+    HttpClientInMemoryWebApiModule.forRoot(DbService),
+    CommonModule
   ],
   providers: [],
   bootstrap: [AppComponent]

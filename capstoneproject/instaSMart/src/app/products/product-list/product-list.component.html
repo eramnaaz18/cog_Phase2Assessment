@@ -1,0 +1,39 @@
+<h2>Products</h2>
+<button class="btn btn-primary" *ngIf="isLoggedIn" [routerLink]="['addProduct']">Add Product</button>
+<div *ngIf="products.length">
+  <div class="row">
+
+    <div *ngFor="let product of products$  | async; let i = index" class="col-6 col-sm-6 col-md-6 col-lg-4" >
+
+     <!--  <h3>
+        <a [title]="product.name + ' details'" [routerLink]="['detail',product.id]">
+          {{ product.name }}
+        </a>
+      </h3> -->
+      <mat-card class="example-card">
+        <mat-card-header>
+          <div mat-card-avatar class="example-header-image"></div>
+          <mat-card-title>{{product.name}}</mat-card-title>
+          
+        </mat-card-header>
+        <img mat-card-image src="{{product.image}}" alt="{{product.name}}">
+        <mat-card-content>
+          <p *ngIf="product.price">
+            Price: {{ product.price |currency:'INR':'symbol'}}
+          </p>
+        </mat-card-content>
+        <mat-card-actions>
+          <button mat-icon-button>
+            <mat-icon aria-label="Example icon-button with a heart icon" style="color:crimson">favorite</mat-icon>
+          </button>
+          <button mat-icon-button aria-label="Example icon button with a open in new tab icon" [routerLink]="['detail',product.id]">
+            <mat-icon aria-label="Example icon-button with a heart icon">open_in_new</mat-icon>
+          </button>
+        </mat-card-actions>
+      </mat-card>
+      
+    </div>
+
+    
+  </div>
+</div>

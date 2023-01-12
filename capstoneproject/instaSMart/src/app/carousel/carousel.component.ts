@@ -70,7 +70,7 @@ export class CarouselComponent implements OnInit, OnChanges, OnDestroy {
   onPreviousClick() {
     const previous = this.currentSlide - 1;
     this.currentSlide = previous < 0 ? this.slides.length - 1 : previous;
-    console.log("previous clicked, new current slide is: ", this.currentSlide);
+    //console.log("previous clicked, new current slide is: ", this.currentSlide);
     this.resetTimer();
   }
 
@@ -81,7 +81,7 @@ export class CarouselComponent implements OnInit, OnChanges, OnDestroy {
   onNextClick() {
     const next = this.currentSlide + 1;
     this.currentSlide = next === this.slides.length ? 0 : next;
-    console.log("next clicked, new current slide is: ", this.currentSlide);
+    //console.log("next clicked, new current slide is: ", this.currentSlide);
     this.resetTimer();
   }
 
