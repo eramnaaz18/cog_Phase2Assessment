@@ -1,5 +1,6 @@
 <h2>Products</h2>
-<button class="btn btn-primary" *ngIf="isLoggedIn" [routerLink]="['addProduct']">Add Product</button>
+
+<button class="btn btn-primary"  [routerLink]="['addProduct']"  *ngIf="isLoggedIn">Add Product</button><!-- -->
 <div *ngIf="products.length">
   <div class="row">
 
@@ -13,7 +14,7 @@
       <mat-card class="example-card">
         <mat-card-header>
           <div mat-card-avatar class="example-header-image"></div>
-          <mat-card-title>{{product.name}}</mat-card-title>
+          <mat-card-title (click)="productSelected(product)">{{product.name}}</mat-card-title>
           
         </mat-card-header>
         <img mat-card-image src="{{product.image}}" alt="{{product.name}}">
@@ -26,9 +27,15 @@
           <button mat-icon-button>
             <mat-icon aria-label="Example icon-button with a heart icon" style="color:crimson">favorite</mat-icon>
           </button>
-          <button mat-icon-button aria-label="Example icon button with a open in new tab icon" [routerLink]="['detail',product.id]">
-            <mat-icon aria-label="Example icon-button with a heart icon">open_in_new</mat-icon>
+
+          <button mat-icon-button aria-label="Example icon button with a open separately icon" [routerLink]="['detail',product.id]">
+            <mat-icon aria-label="Example icon button with a open separately icon">open_in_new</mat-icon>
           </button>
+
+          <button mat-icon-button aria-label="Example icon button with a add to cart icon" (click)="addtocart(product)">
+            <mat-icon aria-label="Example icon button with a add to cart icon">add_shopping_cart</mat-icon>
+          </button>
+
         </mat-card-actions>
       </mat-card>
       

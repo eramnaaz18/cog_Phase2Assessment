@@ -1,4 +1,4 @@
-import { Component, OnChanges, OnDestroy, OnInit, SimpleChanges } from '@angular/core';
+import { Component, EventEmitter, OnChanges, OnDestroy, OnInit, Output, SimpleChanges } from '@angular/core';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Subscription, Observable } from 'rxjs';
@@ -8,6 +8,8 @@ import { getProducts, getError, getCurrentProduct } from 'src/app/state/products
 import { IProduct } from '../products.model';
 import * as ProductActions from '../../state/products/product.actions'
 import { AuthService } from 'src/app/auth/auth.service';
+import { CartService } from 'shared/cart.service';
+
 
 
 @Component({
@@ -31,7 +33,7 @@ export class ProductListComponent implements OnInit, OnChanges, OnDestroy{
   dataReceived=this.productService.getProducts();
   obsProducts$!:Observable<IProduct[]>;
  
-  constructor(private store:Store<State>, private productService: ProductsService, private router:Router, private authservice:AuthService,) { }
+  constructor(private cartService: CartService, private store:Store<State>, private productService: ProductsService, private router:Router, private authservice:AuthService,) { }
   ngOnChanges(changes: SimpleChanges): void {
     if(sessionStorage.getItem('isAdmin')=='true'){
       this.isLoggedIn=true;
@@ -63,7 +65,7 @@ export class ProductListComponent implements OnInit, OnChanges, OnDestroy{
 
   ngOnDestroy(): void {
     //this.sub.unsubscribe();
-    this.isLoggedIn = false;
+    //this.isLoggedIn = false;
   }
 
   /* 
@@ -103,4 +105,16 @@ newProduct():void{
  //still pending
   return this.authservice.isLoggedIn();
 } */
+/* 
+ addToCart(product:IProduct) {
+  window.alert('Your product has been added to the cart!');
+  this.cartService.addToCart(product);
+ 
+} 
+ */
+
+addtocart(item: any){
+  this.cartService.addtoCart(item);
+}
+
 }

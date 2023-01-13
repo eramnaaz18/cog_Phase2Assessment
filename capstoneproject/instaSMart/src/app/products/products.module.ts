@@ -12,6 +12,7 @@ import { productReducer } from '../state/products/product.reducer';
 import { ProductDetailComponent } from './product-detail/product-detail.component';
 import { RatingComponent } from './rating/rating.component';
 import { MaterialsModule } from '../materials-module/materials.module';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -20,14 +21,16 @@ import { MaterialsModule } from '../materials-module/materials.module';
     ProductEditComponent,
     ProductListComponent,
     ProductDetailComponent,
-    RatingComponent
+    RatingComponent,
   ],
   imports: [
     CommonModule,
     ProductsRoutingModule,
     StoreModule.forFeature('products', productReducer),
     EffectsModule.forFeature([ProductEffects]),
-    MaterialsModule
+    MaterialsModule,
+    FormsModule,
+    ReactiveFormsModule
   ]
 })
 export class ProductsModule { }

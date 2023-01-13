@@ -1,0 +1,12 @@
+.container{
+    display: flex;
+    flex-direction: row;
+}
+
+
+.child{
+    flex: 1 0 0;
+    padding: 5px;
+    
+    
+}

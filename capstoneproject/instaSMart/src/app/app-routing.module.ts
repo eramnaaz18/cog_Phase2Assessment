@@ -5,6 +5,7 @@ import { AuthGuard } from './auth/auth-guard.service';
 import { ContactUsComponent } from './contact-us/contact-us.component';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
+import { NotfoundComponent } from './notfound/notfound.component';
 
 const routes: Routes = [
   {path:'',component:HomeComponent},
@@ -17,6 +18,16 @@ const routes: Routes = [
     loadChildren:()=>import('./products/products.module').then((m)=>m.ProductsModule),
     
     },
+
+  {
+    path:'cart',
+    loadChildren:()=>import('./cart/cart.module').then((m)=>m.CartModule),
+    canActivate:[AuthGuard]
+    },
+
+   
+  {path: '404', component: NotfoundComponent},
+  {path: '**', redirectTo: '/404'}
   
 ];
 

@@ -10,8 +10,11 @@ const routes: Routes = [
   {path:'',component:ProductListComponent},
   {path:'products',component:ProductListComponent},
   {path:'addProduct',component:ProductAddComponent},
-  {path:'editProduct',component:ProductEditComponent},
-  {path:'detail/:id', component:ProductDetailComponent}
+  
+  {path:'detail/:id', component:ProductDetailComponent,
+  children:[
+    {path:'editProduct',component:ProductEditComponent},
+  ]}
 ];
 
 @NgModule({

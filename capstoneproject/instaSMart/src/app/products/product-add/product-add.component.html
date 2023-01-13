@@ -1,1 +1,46 @@
-<p>product-add works!</p>
+<div class="col-md-6 user-container" id="outer-div">
+  <h2 class="text-center">{{pageTitle}}</h2>
+  <form [formGroup]="addProduct" (ngSubmit)="saveProduct(addProduct)">
+    <div class="form-group">
+      <label for="name">Product Name:</label>
+      <input type="text" formControlName="name" placeholder="Product name" name="name" class="form-control" id="name">
+    </div>
+
+    <div class="form-group">
+      <label for="brand">Brand:</label>
+      <input type="text" formControlName="brand" placeholder="brand" name="brand" class="form-control" id="brand">
+    </div>
+
+    <div class="form-group">
+      <label for="price">Price:</label>
+      <input type="number" formControlName="price" placeholder="price" name="price" class="form-control" id="price">
+    </div>
+
+
+    <div class="form-group">
+      <label for="rating">Rating:</label>
+      <input type="number" formControlName="rating" placeholder="rating" name="rating" class="form-control" id="rating" min="0" max="5">
+    </div>
+
+
+    <div class="form-group">
+      <label for="category">Category:</label>
+     <select name="category" id="category" formControlName="category" class="form-control">
+        <option selected value="mobile">Mobile</option>
+        <option value="desktop">Desktop</option>
+        <option value="clothing">Clothing</option>
+        <option value="accessories">Accessories</option>
+        <option value="health devices">Health Devices</option>
+      </select>
+    
+    </div>
+
+
+   <!--  <button class="btn btn-success" >Add</button> -->
+    <!-- <button class="btn btn-primary" [routerLink]="['/showCart']">View Cart</button> -->
+
+   <!--  <button class="btn btn-danger" type="button" [disabled]='!addProduct.valid' 
+    (click)="deleteProduct(product)">Delete Product</button> -->
+    <button [disabled]='!addProduct.valid' class="btn btn-success">Save Product</button>
+  </form>
+</div>

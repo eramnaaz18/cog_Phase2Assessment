@@ -22,6 +22,7 @@ import { DbService } from 'shared/db.service';
 import { AppEffects } from './app.effects';
 import { CommonModule } from '@angular/common';
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -31,7 +32,9 @@ import { CommonModule } from '@angular/common';
     FooterComponent,
     AboutUsComponent,
     ContactUsComponent,
-    LoginComponent
+    LoginComponent,
+   
+  
   ],
   imports: [
     BrowserModule,
@@ -39,13 +42,14 @@ import { CommonModule } from '@angular/common';
     BrowserAnimationsModule,
     StoreDevtoolsModule.instrument(),
     StoreModule.forRoot({}, {}),
-    EffectsModule.forRoot([AppEffects]),
+    EffectsModule.forRoot([AppEffects, ]),
     FormsModule,
     ReactiveFormsModule,
     MaterialsModule,
     HttpClientModule,
     HttpClientInMemoryWebApiModule.forRoot(DbService),
-    CommonModule
+    CommonModule,
+    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() })
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,15 +1,26 @@
 <h2>Product Details</h2>
+<div class="container">
+  <div class="child">
+    <div *ngIf="product">
+      <h3>{{ product.name }}</h3>
+      <img src="{{product.image}}" height="200px" width="200px">
+      <h4>{{ product.price | currency:'INR':'symbol'}}</h4>
+      <p>{{ product.brand }}</p>
+      <p>{{ product.seller }}</p>
+      
+        <app-rating [rating]='product.rating' 
+                    [title]="product.rating"></app-rating>
+     
+    <!-- <button (click)="addToCart(product)">Buy</button> -->
+    <button class="btn btn-danger" [routerLink]="['/products']">Back</button>
+    <button class="btn btn-danger" type="button" 
+      (click)="deleteProduct(product)" [routerLink]="['/products']" *ngIf="isLoggedIn">Delete Product</button>
+      <button class="btn btn-danger" [routerLink]="['editProduct']" *ngIf="isLoggedIn" (click)="productSelected(product)">Edit Product</button>
+  </div>
+  </div>
 
-<div *ngIf="product">
-    <h3>{{ product.name }}</h3>
-    <img src="{{product.image}}" height="200px" width="200px">
-    <h4>{{ product.price | currency:'INR':'symbol'}}</h4>
-    <p>{{ product.brand }}</p>
-    <p>{{ product.seller }}</p>
-    
-      <app-rating [rating]='product.rating' 
-                  [title]="product.rating"></app-rating>
-   
-  <!-- <button (click)="addToCart(product)">Buy</button> -->
-  <button class="btn btn-danger" [routerLink]="['/products']">Back</button>
+  <div class="child">
+
+    <router-outlet></router-outlet>
+  </div>
 </div>
