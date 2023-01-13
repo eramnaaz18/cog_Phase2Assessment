@@ -9,9 +9,6 @@ import { User } from "../user/user";
 })
 export class AuthService{
 
-    //get the current user --welcome username
-    //we need to whether the user has logged in or not
-    //we have to log out the user
     url='/api/users';
     currentUser!:User |null;
     redirectToUrl!:string;
@@ -27,7 +24,6 @@ export class AuthService{
       return this.http.get<User[]>(this.url).pipe(
 
         tap(data=>{
-          //we are assigning data to this.users
           this.users=data;
           console.log(this.users)
     }),
@@ -35,11 +31,6 @@ export class AuthService{
     );
 
   }
-
-
-
-
-
 
 
     login(userName:string,password:string):void{
@@ -76,10 +67,8 @@ export class AuthService{
       }
     return false;
 
-
-
-
     }
+
 
     logOut():void{
       sessionStorage.removeItem('loggedInUser');
@@ -87,6 +76,8 @@ export class AuthService{
         this.isLoggedIn=false;
         sessionStorage.removeItem('isLogged');
     }
+
+    
     isAdmin():boolean{
       console.log(this.currentUser)
         if(this.currentUser)

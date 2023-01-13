@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-contact-us',
@@ -13,14 +14,14 @@ export class ContactUsComponent {
   stores: any = ['store1', 'store2', 'store3', 'store4'];
 
 
-   constructor(private formBuilder:FormBuilder) {
+   constructor(private formBuilder:FormBuilder, private router: Router) {
     
     this.contactForm=this.formBuilder.group({
          
          firstname:['',[Validators.required,Validators.minLength(3),Validators.maxLength(20), Validators.pattern("^[A-Za-z]+$")]],
          lastname:['',[Validators.required,Validators.minLength(2),Validators.maxLength(20), Validators.pattern("^[A-Za-z]+$")]],
          store: ['', [Validators.required]],
-         comments: ['',[Validators.required, Validators.minLength(50), Validators.maxLength(150)]]
+         comments: ['',[Validators.required, Validators.minLength(20), Validators.maxLength(150)]]
          })
   }
 
@@ -45,6 +46,7 @@ export class ContactUsComponent {
   
     onSubmit(){
       console.log(this.contactForm.value);
+      this.router.navigate(['']);
     }
 
     resetForm() {

@@ -1,0 +1,77 @@
+<div *ngIf="products.length ==0">
+  <div class="container">
+      <div class="card">
+          <!-- <h5 class="card-title">My Cart</h5> -->
+      </div>
+      <div class="center">
+        <img src="../../../assets/images/empty-cart.png" alt="empty-cart">
+          
+          <h4>Add item to it now</h4>
+        
+      </div>
+  </div>
+</div> 
+
+<div >
+  <div class="container">
+      <div class="card-table">
+          <div class="cart-product">
+              <table class="table table-responsive">
+                  <thead *ngIf="products.length" >
+                      <tr>
+                          <th>Sr.No</th>
+                          <th>Product Name</th>
+                          <th>Product Image</th>
+                          <th>Brand</th>
+                          <th>Price</th>
+                          <th>Quantity</th>
+                           <th>Total Price</th>
+                          <th>Action</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                      <tr *ngFor="let item of products; let i = index">
+                          <td>{{i+1}}</td>
+                          <td>{{item.name}}</td>
+                          <td><img style="width: 120px;" src="{{item.image}}" alt=""></td>
+                          <td style="width: 12%;">{{item.brand}}</td>
+                          <th style="width: 12%;">{{item.price}}</th>
+                          <td style="width: 25%;">
+                            <!-- <button mat-icon-button aria-label="Example icon button with a plus icon" (click)="increase(item)">
+                              <mat-icon aria-label="Example icon button with a add to cart icon">add_box</mat-icon>
+                            </button> -->
+                           <!--  <input type="number" value="{{item.qty}}" id="quant"> -->
+                            <a mat-icon-button
+                            (click)="increase(item)">
+                            <mat-icon aria-label="Example icon button with a add to cart icon">add_box</mat-icon>
+                          </a>
+                            {{item.qty}}
+                            <a mat-icon-button 
+                            (click)="decrease(item)">
+                            <mat-icon aria-label="Example icon button with a add to cart icon">remove_box</mat-icon>
+                        </a>
+                           
+                          
+                           </td>
+                         <td style="width: 12%;">{{item.qty * item.price}}</td> 
+                          <td>
+                              
+                              <button mat-icon-button aria-label="Example icon button with a delete icon" (click)="removeItem(item)">
+                                <mat-icon aria-label="Example icon button with a add to cart icon">delete</mat-icon>
+                              </button>
+                            </td>
+                      </tr>
+                    <tr>
+                          <td colspan="4"></td>
+                          <td><button (click)="emptycart()" class="btn btn-danger" [hidden]="!products.length">Empty Cart</button></td>
+                          <td><button routerLink="/products" class="btn btn-primary" >Continue Shopping</button></td>
+                          <td><button class="btn btn-success" [disabled]="!products.length" [routerLink]="['payment']">Checkout</button></td>
+                          <td [hidden]="!products.length"><strong>Grand Total : {{total() | currency:'INR'}}</strong></td>
+                      </tr>
+                  </tbody>
+              </table>
+          </div>
+          
+      </div>
+  </div>
+</div>

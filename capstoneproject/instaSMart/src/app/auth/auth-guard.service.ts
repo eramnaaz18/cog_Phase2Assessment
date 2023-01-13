@@ -15,14 +15,8 @@ export class AuthGuard implements CanActivate{
 
 }
  checkLoggedIn(url:string):boolean{
-    //first you try line number 18 ,as  a regular user , no need to check if admin
-    //if(this.authService.isLoggedIn()){
-        //later you try for admin routes
-        //this route will be active only for admin users
-        //create one admin user and use it
 
-
-    if(this.authService.isAdmin()){
+    if(this.authService.isAdmin() || this.authService.isLoggedIn){
      console.log('Auth guard check for admin role')
     return true;
     }
@@ -31,9 +25,6 @@ export class AuthGuard implements CanActivate{
     this.router.navigate(['/login']);
     return false;
  }
-
-
-
 
 
 }
