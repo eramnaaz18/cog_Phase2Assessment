@@ -97,7 +97,18 @@ export class DbService implements InMemoryDbService{
         "rating": 3.8, 
         "qty": 1,
         "seller":"Delhi Merchant"
-    }
+    },
+    {
+      "id": 9, 
+      "name": "Muesli", 
+      "brand": "Kellogg's", 
+      "price": 350, 
+      "image":"../../assets/images/kelloggs.jpg", 
+      "category":Category.foodItem, 
+      "rating": 4.5, 
+      "qty": 1,
+      "seller":"Mumbai Retail"
+  }
     ]
 
      const users: User[]=[
