@@ -60,7 +60,7 @@
         <select
           class="custom-select mb-3"
           (change)="changeStore($event)"
-          formControlName="store"
+          formControlName="store" id="store"
         >
           <option value="">Choose Store</option>
           <option *ngFor="let store of stores" [ngValue]="store">
