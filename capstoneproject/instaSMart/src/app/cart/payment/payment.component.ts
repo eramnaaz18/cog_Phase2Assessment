@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { CartService } from 'shared/cart.service';
+import { CartService } from 'src/app/shared/cart.service';
 import { IProduct } from 'src/app/products/products.model';
 
 @Component({
