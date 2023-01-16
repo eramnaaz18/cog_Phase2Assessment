@@ -18,7 +18,7 @@ import { LoginComponent } from './login/login.component';
 import { MaterialsModule } from './materials-module/materials.module';
 import { HttpClientModule } from '@angular/common/http';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
-import { DbService } from 'shared/db.service';
+import { DbService } from 'src/app/shared/db.service';
 import { AppEffects } from './app.effects';
 import { CommonModule } from '@angular/common';
 

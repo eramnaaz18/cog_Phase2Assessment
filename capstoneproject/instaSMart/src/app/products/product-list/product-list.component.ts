@@ -2,13 +2,14 @@ import { Component, EventEmitter, OnChanges, OnDestroy, OnInit, Output, SimpleCh
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Subscription, Observable } from 'rxjs';
-import { ProductsService } from 'shared/products.service';
+import { ProductsService } from 'src/app/shared/products.service';
 import { State } from 'src/app/state/app.state';
 import { getProducts, getError, getCurrentProduct } from 'src/app/state/products/product.selectors';
 import { IProduct } from '../products.model';
 import * as ProductActions from '../../state/products/product.actions'
 import { AuthService } from 'src/app/auth/auth.service';
-import { CartService } from 'shared/cart.service';
+import { CartService } from 'src/app/shared/cart.service';
+import { ThemePalette } from '@angular/material/core';
 
 
 
@@ -32,6 +33,9 @@ export class ProductListComponent implements OnInit, OnChanges, OnDestroy{
 
   dataReceived=this.productService.getProducts();
   obsProducts$!:Observable<IProduct[]>;
+
+  color: ThemePalette = 'accent';
+  
  
   constructor(private cartService: CartService, private store:Store<State>, private productService: ProductsService, private router:Router, private authservice:AuthService,) { }
   ngOnChanges(changes: SimpleChanges): void {
@@ -90,6 +94,7 @@ newProduct():void{
  
   this.store.dispatch(ProductActions.initializeCurrentProduct());
   console.log(this.productService.newProduct());
+  
   
 }
  productSelected(product:IProduct):void{

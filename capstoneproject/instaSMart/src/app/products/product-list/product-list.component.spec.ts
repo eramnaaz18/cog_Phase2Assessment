@@ -2,6 +2,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { StoreModule } from '@ngrx/store';
 import { provideMockStore } from '@ngrx/store/testing';
+import { MaterialsModule } from 'src/app/materials-module/materials.module';
 
 import { ProductListComponent } from './product-list.component';
 
@@ -14,7 +15,8 @@ describe('ProductListComponent', () => {
       declarations: [ ProductListComponent ],
       imports: [
         StoreModule.forRoot(provideMockStore),
-        HttpClientModule
+        HttpClientModule,
+        MaterialsModule
 
       ]
     })

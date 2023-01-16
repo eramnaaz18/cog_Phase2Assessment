@@ -4,7 +4,7 @@ import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
 import { Store} from "@ngrx/store";
 import { Subscription, Observable, tap } from "rxjs";
-import { ProductsService } from "shared/products.service";
+import { ProductsService } from "src/app/shared/products.service";
 import { getCurrentProduct } from "src/app/state/products/product.selectors";
 import { State } from "../../state/app.state";
 import { Category, IProduct } from "../products.model";
@@ -27,16 +27,22 @@ export class ProductAddComponent implements OnInit, OnDestroy {
 
   
   ngOnInit() {
+
+    
     this.addProduct = this.formBuilder.group({
       id: ['',Validators.required],
       name: ['S22', Validators.required],
       brand: ['Samsung', Validators.required],
       price: ['65000', Validators.required],
       rating: ['4.2',Validators.required],
+      image: ['',Validators.required],
       category: [Category.mobile,Validators.required],
-      
+      seller: ['',Validators.required]
 
-    }); this.addProduct.reset();
+    }); 
+
+    
+   
     // Watch for changes to the currently selected product
   this.product$ = this.store.select(getCurrentProduct).pipe(tap(currentProduct => this.displayProduct(currentProduct))
       ); 
@@ -55,6 +61,8 @@ console.log('value in form changes')
 
     this.addProduct.valueChanges.
     subscribe(()=>this.errorMessage); 
+
+    
   }
 
 
@@ -83,14 +91,20 @@ console.log('value in form changes')
       return this.addProduct.get("rating");
         }
 
+
+  get seller(){
+    return this.addProduct.get("seller");
+  } 
+
+
   displayProduct(productParam:IProduct| null | undefined):void{
 
+   
     this.product = productParam;
     console.log(productParam?.brand)
     console.log(this.product?.brand)
     if(this.product){
- 
-     this.addProduct.reset();
+      this.addProduct.reset();
  
   //update the data on the form
   this.addProduct.patchValue({
@@ -101,9 +115,7 @@ console.log('value in form changes')
     rating:this.product.rating,
     price:this.product.price,
     category:this.product.category,
-    
- 
- 
+    seller: this.product.seller
   })
  
  
@@ -123,6 +135,5 @@ console.log('value in form changes')
   }
 
   
-
 
 }

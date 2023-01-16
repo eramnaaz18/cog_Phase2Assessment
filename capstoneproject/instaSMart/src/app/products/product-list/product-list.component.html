@@ -1,10 +1,26 @@
 <h2>Products</h2>
-
-<button class="btn btn-primary"  [routerLink]="['addProduct']"  *ngIf="isLoggedIn">Add Product</button><!-- -->
+<mat-card class="result">
+  <mat-card-content>
+    <section class="example-section">
+      <mat-slide-toggle
+          class="example-margin"
+          [color]="color"
+          (click)="toggleImage()"
+          >
+           
+      </mat-slide-toggle>{{showImage? 'Hide': 'Display'}} Images
+      
+      <button class="btn btn-primary"  [routerLink]="['addProduct']"  *ngIf="isLoggedIn">Add a New Product</button>
+    </section>
+  </mat-card-content>
+</mat-card>
+<div id="filter" *ngIf="isLoggedIn">
+  <label>Filter out product:</label><input type="text" [(ngModel)]="filterValue">
+</div>
 <div *ngIf="products.length">
   <div class="row">
 
-    <div *ngFor="let product of products$  | async; let i = index" class="col-6 col-sm-6 col-md-6 col-lg-4" >
+    <div *ngFor="let product of products$  | async | filter:filterValue; let i = index" class="col-6 col-sm-6 col-md-6 col-lg-4" >
 
      <!--  <h3>
         <a [title]="product.name + ' details'" [routerLink]="['detail',product.id]">
@@ -17,7 +33,7 @@
           <mat-card-title (click)="productSelected(product)">{{product.name}}</mat-card-title>
           
         </mat-card-header>
-        <img mat-card-image src="{{product.image}}" alt="{{product.name}}">
+        <img *ngIf="showImage" mat-card-image src="{{product.image}}" alt="{{product.name}}">
         <mat-card-content>
           <p *ngIf="product.price">
             Price: {{ product.price |currency:'INR':'symbol'}}

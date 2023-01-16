@@ -3,7 +3,7 @@
   <div class="child">
     <div *ngIf="product">
       <h3>{{ product.name }}</h3>
-      <img src="{{product.image}}" height="200px" width="200px">
+      <img src="{{product.image}}" height="200px" width="200px" @fadeSlideInOut>
       <h4>{{ product.price | currency:'INR':'symbol'}}</h4>
       <p>{{ product.brand }}</p>
       <p>{{ product.seller }}</p>
@@ -11,16 +11,44 @@
         <app-rating [rating]='product.rating' 
                     [title]="product.rating"></app-rating>
      
-    <!-- <button (click)="addToCart(product)">Buy</button> -->
-    <button class="btn btn-danger" [routerLink]="['/products']">Back</button>
+    <div class = "btn-group" style="width: 100%">
+    <button class="btn btn-warning" [routerLink]="['/products']">Back</button>
+    <button class="btn btn-info" (click)="show()">More Details</button>
     <button class="btn btn-danger" type="button" 
       (click)="deleteProduct(product)" [routerLink]="['/products']" *ngIf="isLoggedIn">Delete Product</button>
-      <button class="btn btn-danger" [routerLink]="['editProduct']" *ngIf="isLoggedIn" (click)="productSelected(product)">Edit Product</button>
+      <button class="btn btn-secondary" [routerLink]="['editProduct']" *ngIf="isLoggedIn" (click)="productSelected(product)">Edit Product</button>
+  </div>
   </div>
   </div>
 
   <div class="child">
-
+    <div *ngIf="showDiv" class="details">
+      <table class="table table-hover" *ngIf="product">
+        <tbody>
+          <tr>
+            <th scope="row">Name</th>
+            <td>{{product.name}}</td>
+          </tr>
+          <tr>
+            <th scope="row">Brand</th>
+            <td>{{product.brand}}</td>
+          </tr>
+          <tr>
+            <th scope="row">Price</th>
+            <td>{{product.price | currency: 'INR'}}</td>
+          </tr>
+          <tr>
+            <th scope="row">Category</th>
+            <td>{{product.category}}</td>
+          </tr>
+          <tr>
+            <th scope="row">Rating</th>
+            <td>{{product.rating}}</td>
+          </tr>
+          
+        </tbody>
+      </table>
+    </div>
     <router-outlet></router-outlet>
   </div>
 </div>

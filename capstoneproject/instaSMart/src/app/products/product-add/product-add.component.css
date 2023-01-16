@@ -18,13 +18,36 @@ form{
     
 }
 
-button{
-    width: 100%;
-    margin-top: 5px;
-    font-weight: bold;
-}
+
 
 label{
     font-weight: bold;
     
 }
+
+
+
+button{
+    text-align: center;
+    font-weight: bold;
+   
+}
+
+button:disabled{
+    cursor:not-allowed
+
+}
+
+#submit{
+    margin-right: 10px;
+    border-radius: 10px;
+    
+    
+}
+
+#reset{
+    margin-left: 10px;
+    border-radius: 10px;
+    
+}
+

@@ -4,7 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Observable, Subscription, tap } from 'rxjs';
-import { ProductsService } from 'shared/products.service';
+import { ProductsService } from 'src/app/shared/products.service';
 import { State } from 'src/app/state/app.state';
 import { getCurrentProduct } from 'src/app/state/products/product.selectors';
 import { IProduct } from '../products.model';
@@ -30,6 +30,7 @@ export class ProductEditComponent implements OnInit{
       id: ['',Validators.required],
       name: ['', Validators.required],
       brand: ['', Validators.required],
+      image: ['',Validators.required],
       price: ['', Validators.required],
       rating: ['',Validators.required],
       category: ['',Validators.required],

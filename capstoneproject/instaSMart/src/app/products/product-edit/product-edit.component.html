@@ -1,20 +1,41 @@
 <div class="col-md-6 user-container" id="outer-div">
     <h2 class="text-center">{{pageTitle}}</h2>
-    <form [formGroup]="editProduct" (ngSubmit)="saveChanges(product)">
+    <form [formGroup]="editProduct" (ngSubmit)="saveChanges(product)" class="editProduct-form">
       <div class="form-group">
         <label for="name">Product Name:</label>
         <input type="text" formControlName="name" placeholder="Product name" name="name" class="form-control" id="name">
       </div>
+
+      <div *ngIf="!name?.valid && (name?.dirty || name?.touched)" class="alert alert-danger" role="alert">
+        <div *ngIf="name?.errors?.['required']">
+            Product Name is required
+        </div>
+     </div>
+
 
       <div class="form-group">
         <label for="brand">Brand:</label>
         <input type="text" formControlName="brand" placeholder="brand" name="brand" class="form-control" id="brand">
       </div>
 
+      <div *ngIf="!brand?.valid && (brand?.dirty || brand?.touched)" class="alert alert-danger" role="alert">
+        <div *ngIf="brand?.errors?.['required']">
+            Product Brand is required
+        </div>
+     </div>
+
+
       <div class="form-group">
         <label for="price">Price:</label>
         <input type="number" formControlName="price" placeholder="price" name="price" class="form-control" id="price">
       </div>
+
+      <div *ngIf="!price?.valid && (price?.dirty || price?.touched)" class="alert alert-danger" role="alert">
+        <div *ngIf="price?.errors?.['required']">
+            Product price is required
+        </div>
+     </div>
+
 
 
       <div class="form-group">
@@ -22,19 +43,56 @@
         <input type="number" formControlName="rating" placeholder="rating" name="rating" class="form-control" id="rating" min="0" max="5">
       </div>
 
+      <div *ngIf="!rating?.valid && (rating?.dirty || rating?.touched)" class="alert alert-danger" role="alert">
+        <div *ngIf="rating?.errors?.['required']">
+            Product rating is required
+        </div>
+     </div>
+
 
       <div class="form-group">
         <label for="category">Category:</label>
        <select name="category" id="category" formControlName="category" class="form-control">
           <option selected value="mobile">Mobile</option>
-          <option value="desktop">Desktop</option>
-          <option value="clothing">Clothing</option>
           <option value="accessories">Accessories</option>
           <option value="health devices">Health Devices</option>
+          <option value="home appliances">Home Appliances</option>
+          <option value="food item">Food Item</option>
+          <option value="groceries">Groceries</option>
+          <option value="electronics">Electronics</option>
         </select>
       
       </div>
 
-      <button [disabled]='!editProduct.valid ||!editProduct.dirty' class="btn btn-success" >Save Changes</button>
+      <div *ngIf="!category?.valid && (category?.dirty || category?.touched)" class="alert alert-danger" role="alert">
+        <div *ngIf="category?.errors?.['required']">
+            Product category is required
+        </div>
+     </div>
+  
+
+      <div class="form-group">
+        <label for="image">Product Image:</label>
+        <input type="text" formControlName="image" placeholder="Product image" name="image" class="form-control" id="image">
+      </div>
+
+      <div *ngIf="!image?.valid && (image?.dirty || image?.touched)" class="alert alert-danger" role="alert">
+        <div *ngIf="image?.errors?.['required']">
+            Product image is required
+        </div>
+     </div>
+      
+      <div class="form-group">
+        <label for="seller">Seller Details:</label>
+        <input type="text" formControlName="seller" placeholder="Seller info" name="seller" class="form-control" id="seller">
+      </div>
+  
+      <div *ngIf="!seller?.valid && (seller?.dirty || seller?.touched)" class="alert alert-danger" role="alert">
+        <div *ngIf="seller?.errors?.['required']">
+            Seller name is required
+        </div>
+     </div>
+
+      <button [disabled]='!editProduct.valid ||!editProduct.dirty' class="btn btn-success" id="submit">Save Changes</button>
     </form>
   </div>
