@@ -10,6 +10,8 @@ describe('CartService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({});
     service = TestBed.inject(CartService);
+
+    //at the starting we are adding two items to the cart
     service.cartItemList = [
       {
         id: 2,
@@ -40,6 +42,7 @@ describe('CartService', () => {
     expect(service).toBeTruthy();
   });
 
+  //testing addtoCart()
   it('should add to cart', ()=>{
     let prod1 :IProduct = {
       id: 4, 
@@ -59,6 +62,7 @@ describe('CartService', () => {
   });
 
 
+  //testing if one item is removed
   it('should remove single item from the cart', ()=>{
     let prod1 :IProduct = {
       id: 4, 
@@ -78,12 +82,14 @@ describe('CartService', () => {
 
 
 
+  //testing if entire cart item is removed at once
   it('should remove all items in the cart', ()=>{
     service.removeAllCart();
     expect(service.cartItemList.length).toEqual(0);
   });
 
 
+  //testing amount of two items added initially in the cart
   it('should give total price of items in the cart', ()=>{
     let totalAmount = service.getTotalPrice();
     expect(totalAmount).toEqual(10500);

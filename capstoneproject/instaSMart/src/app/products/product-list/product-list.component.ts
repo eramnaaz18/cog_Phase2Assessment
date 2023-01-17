@@ -19,25 +19,31 @@ import { ThemePalette } from '@angular/material/core';
   styleUrls: ['./product-list.component.css']
 })
 export class ProductListComponent implements OnInit, OnChanges, OnDestroy{
-  products : IProduct[] = [];
-  errorMessage: string="";
-  sub!:Subscription;
-  href:string='';
 
+  products : IProduct[] = [];
+  //errorMessage: string="";
+  //sub!:Subscription;
+  //selectedProduct!:IProduct | null;
+  href:string='';
   isLoggedIn:boolean=false;
 
   products$!:Observable<IProduct[]>;
-  
   selectedProduct$!:Observable<any>;
   errorMessage$!: Observable<string>;
-
   dataReceived=this.productService.getProducts();
   obsProducts$!:Observable<IProduct[]>;
 
   color: ThemePalette = 'accent';
-  
+  showImage:boolean=false;
+  filterValue!:string;
+
  
+
+  
+ //injecting various services
   constructor(private cartService: CartService, private store:Store<State>, private productService: ProductsService, private router:Router, private authservice:AuthService,) { }
+  
+  //keeping a track of admin users
   ngOnChanges(changes: SimpleChanges): void {
     if(sessionStorage.getItem('isAdmin')=='true'){
       this.isLoggedIn=true;
@@ -45,8 +51,12 @@ export class ProductListComponent implements OnInit, OnChanges, OnDestroy{
    
     this.isLoggedIn=false;
   }
-  selectedProduct!:IProduct | null;
 
+
+  
+
+
+  //on init the href is given the current url and then products are fetched from store (ngRx used)
   ngOnInit(): void {
     
     this.href=this.router.url;
@@ -62,26 +72,16 @@ export class ProductListComponent implements OnInit, OnChanges, OnDestroy{
 
     this.selectedProduct$ = this.store.select(getCurrentProduct);
 
-
+    //checks the admin type of the logged in user (boolean value)
     this.isLoggedIn=this.authservice.isAdminType;
      
   }
 
   ngOnDestroy(): void {
-    //this.sub.unsubscribe();
-    //this.isLoggedIn = false;
   }
 
-  /* 
- _prodCategory!:Category; */
- showImage:boolean=false;
- imageWidth:number=80;
- imageHeight:number=80;
- imageMargin:number=5;
- filteredProducts:IProduct[]=[];
- filterValue!:string;
 
-
+  //for displaying or hiding image
 toggleImage():void{
 
   this.showImage= !this.showImage;
@@ -89,7 +89,7 @@ toggleImage():void{
 
 
 
-
+//the method is called when user clicks on Add New Product button
 newProduct():void{
  
   this.store.dispatch(ProductActions.initializeCurrentProduct());
@@ -97,27 +97,16 @@ newProduct():void{
   
   
 }
+
+//the currently selected product
  productSelected(product:IProduct):void{
   
-  /* this.productService.changeSelectedProduct(product); */
   this.store.dispatch(ProductActions.setCurrentProduct({currentProductId:product.id}));
   console.log(product);
  }
 
- /* get isLoggedIn():boolean{
-  //service to return the loggedInstatus ofthe user
-  //we will have to inject a authentication service which will checkt the loggedIn
- //still pending
-  return this.authservice.isLoggedIn();
-} */
-/* 
- addToCart(product:IProduct) {
-  window.alert('Your product has been added to the cart!');
-  this.cartService.addToCart(product);
- 
-} 
- */
 
+ //on click of cart icon addtocart method is called
 addtocart(item: any){
   this.cartService.addtoCart(item);
 }

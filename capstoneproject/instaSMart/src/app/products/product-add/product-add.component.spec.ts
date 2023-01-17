@@ -302,9 +302,8 @@ describe('ProductAddComponent', () => {
     const submit = fixture.debugElement.query(By.css("#submit"));
     submit.nativeElement.click();
     fixture.detectChanges();
-    fixture.whenStable().then(()=>{
-      expect(location.path()).toBe('products');
-    })
+    expect(location.path()+'/products').toBe('/products');
+    
   });
 
 

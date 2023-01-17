@@ -1,4 +1,8 @@
+<!--Products page with all products displayed-->
 <h2>Products</h2>
+<!--It has two parts here:
+  1. toggler for viewing or hiding image
+  2. button for adding a new product (only if logged in user is admin)-->
 <mat-card class="result">
   <mat-card-content>
     <section class="example-section">
@@ -14,19 +18,20 @@
     </section>
   </mat-card-content>
 </mat-card>
+
+<!--this is the filter part available only for admin users so that they can easily 
+  search for products for CRUD operations-->
 <div id="filter" *ngIf="isLoggedIn">
   <label>Filter out product:</label><input type="text" [(ngModel)]="filterValue">
 </div>
+
+
+<!--The div is displayed only if the products exist in the in memory db-->
 <div *ngIf="products.length">
   <div class="row">
 
     <div *ngFor="let product of products$  | async | filter:filterValue; let i = index" class="col-6 col-sm-6 col-md-6 col-lg-4" >
 
-     <!--  <h3>
-        <a [title]="product.name + ' details'" [routerLink]="['detail',product.id]">
-          {{ product.name }}
-        </a>
-      </h3> -->
       <mat-card class="example-card">
         <mat-card-header>
           <div mat-card-avatar class="example-header-image"></div>
@@ -39,6 +44,11 @@
             Price: {{ product.price |currency:'INR':'symbol'}}
           </p>
         </mat-card-content>
+
+        <!--The actions part of mat-card has three important buttons:
+        1. favourite (to wishlist items)
+        2. viewing details of a particular product
+        3. add to cart option-->
         <mat-card-actions>
           <button mat-icon-button>
             <mat-icon aria-label="Example icon-button with a heart icon" style="color:crimson">favorite</mat-icon>

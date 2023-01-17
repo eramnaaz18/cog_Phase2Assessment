@@ -22,18 +22,26 @@
           </li>
         </ul>
         <form class="d-flex">
-          <input class="form-control" type="search" placeholder="Search" aria-label="Search" style="width:500px" >
+          <input class="form-control" type="search" placeholder="Search" aria-label="Search" style="width:500px">
           <button class="btn btn-warning" type="submit"><span class="material-icons" id="search">search</span></button>
         </form>
         
       </div>
+
+      <!--This is to the extreme right of navbar for better UX
+        with login option and cart icon (if user is not logged in)
+        When the user logs in, it displays three list items
+        1. Hi (username)
+        2. cart icon
+        3. Logout -->
       <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent" id="end">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0 ">
           <li class="nav-item" *ngIf="isLoggedInUser">
-              <a class='nav-link' >Hi {{userName}}</a></li>
+              <a class='nav-link'>Hi {{userName}}</a></li>
             <li class="nav-item">
                     <a class="nav-link cart position-relative d-inline-flex" routerLink="/cart" tabindex="-1" aria-disabled="true">
                       <i class="fas fa fa-shopping-cart fa-lg"></i>
+                      <!--This is to display the total number of items in the cart for logged in/out users-->
                       <span class="cart-basket d-flex align-items-center justify-content-center" *ngIf="isLoggedInUser">
                         {{total()}}
                       </span>
@@ -42,11 +50,11 @@
                       </span>
                     </a>
               </li>
-              <li class="nav-item">
+              <li class="nav-item" id="login">
                 <a class="nav-link" tabindex="-1" aria-disabled="true" *ngIf="!isLoggedInUser" routerLink="/login" routerLinkActive="active">Login</a>
               </li>
 
-              <li class="nav-item" *ngIf="isLoggedInUser">
+              <li class="nav-item" *ngIf="isLoggedInUser" id="logout">
                 <a class="nav-link" (click)="logOut()" style="cursor:pointer;">LogOut</a>
                 </li>
         </ul>

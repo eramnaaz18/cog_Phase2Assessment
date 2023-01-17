@@ -1,6 +1,8 @@
+<!--Add Product Reactive Form with validation checks-->
 <div class="col-md-6 user-container" id="outer-div">
   <h2 class="text-center">{{pageTitle}}</h2>
   <form [formGroup]="addProduct" (ngSubmit)="saveProduct(addProduct)" class="addProduct-form">
+
     <div class="form-group">
       <label for="name">Product Name:</label>
       <input type="text" formControlName="name" placeholder="Product name" name="name" class="form-control" id="name">
@@ -61,7 +63,6 @@
     
     </div>
 
-
     <div *ngIf="!category?.valid && (category?.dirty || category?.touched)" class="alert alert-danger" role="alert">
       <div *ngIf="category?.errors?.['required']">
           Product category is required
@@ -92,7 +93,7 @@
       </div>
    </div>
 
-
+   <!--The submit button remains disabled until form is valid-->
     <div class = "btn-group" style="width: 100%">
     <button [disabled]='!addProduct.valid' class="btn btn-success" id="submit">Save Product</button>
     </div>

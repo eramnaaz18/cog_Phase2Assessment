@@ -28,7 +28,7 @@ export class ProductAddComponent implements OnInit, OnDestroy {
   
   ngOnInit() {
 
-    
+    //reactive form
     this.addProduct = this.formBuilder.group({
       id: ['',Validators.required],
       name: ['S22', Validators.required],
@@ -54,18 +54,14 @@ console.log('selected current product in ng onit add product ',this.product);
     );
 console.log('value in form changes')
 
-
-
     //when the product is selected from the product list , it should be displayed on the form
+   /*  this.addProduct.valueChanges.
+    subscribe(()=>this.errorMessage);  */
 
-
-    this.addProduct.valueChanges.
-    subscribe(()=>this.errorMessage); 
-
-    
   }
 
 
+  //adding the getters to let it communicate with the template
    get id(){
     return this.addProduct.get("id");
   }
@@ -97,6 +93,7 @@ console.log('value in form changes')
   } 
 
 
+  
   displayProduct(productParam:IProduct| null | undefined):void{
 
    
@@ -123,6 +120,7 @@ console.log('value in form changes')
  
    }
  
+   //creating a new product (ngRx)
    saveProduct(addProduct: any):void{
  
          const product=addProduct.value;

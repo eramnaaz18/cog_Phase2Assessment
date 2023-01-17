@@ -9,6 +9,7 @@ export class ProductEffects {
 
   constructor(private actions$: Actions, private productService: ProductsService) { }
 
+  //loading the products
   loadProducts$ = createEffect(() => {
     return this.actions$
       .pipe(
@@ -22,6 +23,7 @@ export class ProductEffects {
       );
   });
 
+  //updating the products
   updateProduct$ = createEffect(() => {
     return this.actions$
       .pipe(
@@ -36,6 +38,7 @@ export class ProductEffects {
       );
   });
 
+  //creating the product
   createProduct$ = createEffect(() => {
     return this.actions$
       .pipe(
@@ -50,6 +53,7 @@ export class ProductEffects {
       );
   });
 
+  //deletion of product
   deleteProduct$ = createEffect(() => {
     return this.actions$
       .pipe(

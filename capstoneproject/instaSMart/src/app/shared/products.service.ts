@@ -17,11 +17,8 @@ export class ProductsService {
 
    
   getProducts():Observable<IProduct[]>{
-    //what is the logic
     //to get array of IProduct from db
     //get method is a generic method IProduct[]
-    //arguments u are passing this.url api/products --- api
-    //pipe -- operator in rxjs  where you ca
     return this.http.get<IProduct[]>(this.url).pipe(
 
         tap(data=>{console.log(data);
@@ -70,10 +67,6 @@ changeSelectedProduct(selectedProduct:IProduct | null):void{
 
 
   // a method newProduct which acts like a constructor of creating a new Product
-  //what is name of the method -- newProduct
-  //how many args --zero args
-  //return type IProduct
-
   newProduct():IProduct{
   //logic should focus on sending back a IProduct
     return {
@@ -93,20 +86,10 @@ changeSelectedProduct(selectedProduct:IProduct | null):void{
   }
 
 
-  //what ever is in the request body, that is the object of IProduct
-  //http post request  with the request body and request headers -content type application/json
-  //url is the collection of events ==  /api/events
-
-  //what is the method name --createProduct
-  //args -- product of type IProduct
-  //return Observable<IProduct>
-
   createProduct(product:IProduct):Observable<IProduct>{
      //headers variable to set request headers
     const headers= new HttpHeaders({'Content-Type':'application/json'});
-    //const size = this.getProducts.length;
-   // const id =size+1;
-        //newProduct spread across product
+    
       const newProduct={...product,id:null};
     console.log(`in create method  ${this.url}`)
 
@@ -120,8 +103,7 @@ changeSelectedProduct(selectedProduct:IProduct | null):void{
         tap(data=>{
 
          console.log('in create new product'+ JSON.stringify(data));
-         //pushing the new data new Product to the products array
-        // this.products.push(data);
+
          console.log(JSON.stringify(this.products));
 
         },
@@ -129,12 +111,11 @@ changeSelectedProduct(selectedProduct:IProduct | null):void{
         )
       )
   }
-  //delete  api/events --- delete mapping api/events/1
-
+  
+  //delete method
   deleteProduct(id:number):Observable<{}>{
     const headers= new HttpHeaders({'Content-Type':'application/json'});
 
-    //@DeleteMapping deleteAll delete url/id  /api/products/111
     const url= `${this.url}/${id}`;
 
     return this.http.delete<IProduct>(url,{headers})
@@ -143,9 +124,6 @@ changeSelectedProduct(selectedProduct:IProduct | null):void{
         console.log('deleted prd'+id);
        const foundIndex = this.products.findIndex(item=>item.id===id);
        //if product id is not found means index returned will be -1
-       //if(foundIndex > -1)
-       //this.products.splice(foundIndex,1);
-
 
       },
       catchError(this.errorHandler))
@@ -154,23 +132,12 @@ changeSelectedProduct(selectedProduct:IProduct | null):void{
     );
 
 
-
-
-
   }
-
-
 
 
   //update a product
   // means two steps -- one when the user selects a particular data from the list and clicks on edit button
-  //you can render a new component ProductEditComponent --form with all the required fields
-  // name price qty
-  //ngOnInit -- it should get the values of the selectedProduct  from the ProductListComponent
-  //in that form , pre fill the data from the db with the selected product
-  //user will modify
-  //user will submit  ,this new product data will be used in http put with the id
-   
+
    updateProduct(product:IProduct):Observable<IProduct>{
     const headers= new HttpHeaders({'Content-Type':'application/json'});
 
@@ -190,15 +157,6 @@ changeSelectedProduct(selectedProduct:IProduct | null):void{
     catchError(this.errorHandler)
     );
 
-
-
-
-
-
    }
-
-
-
-
 
 }

@@ -14,6 +14,7 @@ import { trigger, transition, style, animate } from '@angular/animations';
   selector: 'app-product-detail',
   templateUrl: './product-detail.component.html',
   styleUrls: ['./product-detail.component.css'],
+  //adding animation for the product image to slide in and out with a little fade
   animations: [
     trigger('fadeSlideInOut', [
         transition(':enter', [
@@ -26,16 +27,44 @@ import { trigger, transition, style, animate } from '@angular/animations';
     ])
 ],
 })
+
 export class ProductDetailComponent implements OnInit, OnChanges, OnDestroy{
 
   id:number=0;
   product :IProduct | undefined;
   sub!:Subscription;
   isLoggedIn:boolean=false;
+
+
   constructor(private store:Store<State>,private authservice:AuthService, private activatedRoute:ActivatedRoute,private router:Router,private service:ProductsService) { }
+
+  ngOnInit(): void {
+ 
+    //checks if the loggedin user is of admin type or not
+    this.isLoggedIn=this.authservice.isAdminType;
+
+    //subscribes to the activatedRoute
+     this.sub = this.activatedRoute.paramMap.subscribe((params)=>{
+       console.log(params);
+       let product_id=params.get('id');
+        if(product_id){
+          this.id=+product_id;
+        }
+
+        //gets the product by id
+       if(this.service.getProductById(this.id)){
+             this.product = this.service.getProductById(this.id);
+       } 
+     })
+
+  }
+
+  //unsubscribing
   ngOnDestroy(): void {
     this.sub.unsubscribe();
   }
+  
+  //checking if on any changes user is still admin or not 
   ngOnChanges(changes: SimpleChanges): void {
     if(sessionStorage.getItem('isAdmin')=='true'){
       this.isLoggedIn=true;
@@ -44,29 +73,9 @@ export class ProductDetailComponent implements OnInit, OnChanges, OnDestroy{
     this.isLoggedIn=false;
   }
 
-  ngOnInit(): void {
- 
-    this.isLoggedIn=this.authservice.isAdminType;
-     this.sub = this.activatedRoute.paramMap.subscribe((params)=>{
-       console.log(params);
-       let product_id=params.get('id');
-        if(product_id){
-          this.id=+product_id;
-        }
-
-       if(this.service.getProductById(this.id)){
-             this.product = this.service.getProductById(this.id);
-       } 
-     })
-
-  }
-
   
-  /* addToCart(product) {
-    window.alert('Your product has been added to the cart!');
-    this.cartService.addToCart(product);
-  } */
 
+  //delete product function which deletes based on id of product
   deleteProduct(prod:IProduct | null | undefined):void{
     if(prod && prod.id){
 
@@ -85,13 +94,13 @@ export class ProductDetailComponent implements OnInit, OnChanges, OnDestroy{
 
   productSelected(product:IProduct):void{
   
-    /* this.productService.changeSelectedProduct(product); */
     this.store.dispatch(ProductActions.setCurrentProduct({currentProductId:product.id}));
     console.log(product);
    }
 
 
 
+   //to show or hide a div
    showDiv: boolean= false;
    show(){
      this.showDiv = true;

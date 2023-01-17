@@ -1,3 +1,4 @@
+<!--Product Edit Reactive Form with validations-->
 <div class="col-md-6 user-container" id="outer-div">
     <h2 class="text-center">{{pageTitle}}</h2>
     <form [formGroup]="editProduct" (ngSubmit)="saveChanges(product)" class="editProduct-form">
@@ -93,6 +94,7 @@
         </div>
      </div>
 
+     <!--If no changes are done (form is not dirty), button remains disabled-->
       <button [disabled]='!editProduct.valid ||!editProduct.dirty' class="btn btn-success" id="submit">Save Changes</button>
     </form>
   </div>

@@ -13,6 +13,7 @@ const routes: Routes = [
   {path:'about',component:AboutUsComponent},
   {path:'contact',component:ContactUsComponent}, 
   {path:'login',component:LoginComponent},
+  //lazy loading of products and cart modules
   {
     path:'products',
     loadChildren:()=>import('./products/products.module').then((m)=>m.ProductsModule),

@@ -1,19 +1,17 @@
+/*the parent div having flex layout of direction row*/
 .container{
     display: flex;
     flex-direction: row;
 }
 
-
+/*styling of child div*/
 .child{
     flex: 1 0 0;
     padding: 5px;
-    
-    
+   
 }
 
-
-
-
+/*buttons in the child div*/
 button{
     text-align: center;
     font-weight: bold;
@@ -27,3 +25,10 @@ button:disabled{
 
 }
 
+/*responsiveness*/
+@media (max-width: 600px){
+    .container{
+        display: flex;
+        flex-direction: column;
+    }
+}

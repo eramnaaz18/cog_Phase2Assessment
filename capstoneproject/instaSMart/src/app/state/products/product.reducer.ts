@@ -2,7 +2,7 @@ import { createReducer, on } from "@ngrx/store";
 import { ProductState, initialState } from "./product.state";
 import * as ProductActions from './product.actions'
 
-
+//here we check that on which action what state change happens
 export const productReducer = createReducer<ProductState>(
     initialState,
     

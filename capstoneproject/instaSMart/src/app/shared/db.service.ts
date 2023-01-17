@@ -8,7 +8,10 @@ import { User } from 'src/app/user/user';
 })
 export class DbService implements InMemoryDbService{
 
+  //createDb() method being used to create in memory db of products[] and users[]
   createDb(){
+
+    //products[]
     const products: IProduct[]=[
       {
         "id": 1, 
@@ -111,6 +114,7 @@ export class DbService implements InMemoryDbService{
   }
     ]
 
+    //set of users that we need for login
      const users: User[]=[
       {
         "id":1,

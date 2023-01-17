@@ -24,6 +24,7 @@ describe('ProductsService', () => {
     service = TestBed.inject(ProductsService);
     injector = getTestBed();
 
+    //initialise prod[] with two products
     prod =[
       {
         id: 1, 
@@ -57,6 +58,7 @@ describe('ProductsService', () => {
     expect(service).toBeTruthy();
   });
 
+  //testing for fetching all products
   it('should call getProducts()', inject([HttpTestingController,ProductsService],
   (httpMock:HttpTestingController,service: ProductsService) => {
       service.getProducts().subscribe(resp => expect (prod).toEqual(resp));
@@ -69,6 +71,7 @@ describe('ProductsService', () => {
   ));
 
 
+  //testing createProduct()
   it('should make use of createProduct() to create a new product', ()=>{
     let prod1 :IProduct = {
       id: 4, 
@@ -82,21 +85,23 @@ describe('ProductsService', () => {
       seller:"Delhi Merchant"
   };
 
-prod = [...prod,prod1];
+  prod = [...prod,prod1];
 
-service.createProduct(prod1).subscribe(resp => {
-  expect(resp).toEqual(prod1);
-});
+  service.createProduct(prod1).subscribe(resp => {
+    expect(resp).toEqual(prod1);
+  });
 
-expect(prod.length).toEqual(3);
+  expect(prod.length).toEqual(3);
 
-const req = httpMock.expectOne(service.url);
-expect(req.request.method).toBe('POST');
-req.flush(prod1);
+  const req = httpMock.expectOne(service.url);
+  expect(req.request.method).toBe('POST');
+  req.flush(prod1);
 
-});
+  });
 
-it('should get product by id when getProductById() called', ()=>{
+
+  //testing getProductById()
+  it('should get product by id when getProductById() called', ()=>{
   
   let product = {
     id: 3, 
@@ -117,6 +122,7 @@ it('should get product by id when getProductById() called', ()=>{
   });
 
 
+  //testing updateProduct()
   it('should update product when updateProduct() called', ()=>{
     let product = {
       id: 1, 
@@ -142,6 +148,7 @@ it('should get product by id when getProductById() called', ()=>{
   });
 
 
+  //testing deleteProduct()
   it('should delete product when deleteProduct() called', ()=>{
     service.deleteProduct(1).subscribe(
       resp => expect(resp).toEqual(1)

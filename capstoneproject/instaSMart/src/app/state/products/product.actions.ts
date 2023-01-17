@@ -1,6 +1,7 @@
 import { createAction, props } from "@ngrx/store";
 import { IProduct } from "src/app/products/products.model";
 
+//various actions to be performed on the products are stated in this file
 export const setCurrentProduct = createAction(
     '[Product] Set Current Product',
     props<{ currentProductId: number }>()

@@ -25,7 +25,10 @@ export class ProductEditComponent implements OnInit{
   product!:IProduct | null | undefined;
   errorMessage='';
   pageTitle='Edit Product';
+
+
   ngOnInit(){
+    //reactive form with validators
     this.editProduct = this.formBuilder.group({
       id: ['',Validators.required],
       name: ['', Validators.required],
@@ -47,12 +50,13 @@ export class ProductEditComponent implements OnInit{
   this.editProduct.valueChanges.subscribe(
     () => this.errorMessage
   );
-console.log('value in form changes')
+  console.log('value in form changes')
 
   }
 
     
 
+  //getters for using them in the template
    get id(){
     return this.editProduct.get("id");
   }
@@ -109,6 +113,7 @@ console.log('value in form changes')
    }
 
 
+   //the updated data gets saved and redirects to products page
    saveChanges(originalProduct:IProduct | null | undefined):void{
     if(this.editProduct.valid){
       if(this.editProduct.dirty){
@@ -128,7 +133,7 @@ console.log('value in form changes')
   }
 
  ngOnDestroy(): void {
-   //this.sub.unsubscribe();
+  
  }
 
 }

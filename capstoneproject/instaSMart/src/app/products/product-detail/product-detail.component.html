@@ -1,16 +1,23 @@
+<!--Detailed view of selected product-->
 <h2>Product Details</h2>
 <div class="container">
   <div class="child">
     <div *ngIf="product">
       <h3>{{ product.name }}</h3>
-      <img src="{{product.image}}" height="200px" width="200px" @fadeSlideInOut>
+      <img src="{{product.image}}" height="200px" width="200px" @fadeSlideInOut> <!--Adding animation to image-->
       <h4>{{ product.price | currency:'INR':'symbol'}}</h4>
       <p>{{ product.brand }}</p>
       <p>{{ product.seller }}</p>
       
+      <!--Two way binding of rating (displayed as stars)-->
         <app-rating [rating]='product.rating' 
                     [title]="product.rating"></app-rating>
      
+    <!--This div comes with four buttons
+      1. Back (to redirect back to products list page)
+      2. More Details (to display details of a particular product in depth)
+      3. Delete Product (this is visible only to admin users)
+      4. Edit Product (this is also only for admin users)-->
     <div class = "btn-group" style="width: 100%">
     <button class="btn btn-warning" [routerLink]="['/products']">Back</button>
     <button class="btn btn-info" (click)="show()">More Details</button>
@@ -21,6 +28,8 @@
   </div>
   </div>
 
+  <!--This section of div is visible only if "More Details" button is clicked
+    which in tuens make "showDiv" true-->
   <div class="child">
     <div *ngIf="showDiv" class="details">
       <table class="table table-hover" *ngIf="product">
@@ -49,6 +58,7 @@
         </tbody>
       </table>
     </div>
+    <!--Here the edit product form is rendered-->
     <router-outlet></router-outlet>
   </div>
 </div>
