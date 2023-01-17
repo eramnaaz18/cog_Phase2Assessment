@@ -78,6 +78,17 @@
         "category":"healthDevices", 
         "rating": 3.8, 
         "qty": 1
+    },
+    {
+        "id": 9, 
+        "name": "Muesli", 
+        "brand": "Kellogg's", 
+        "price": 350, 
+        "image":"../../assets/images/kelloggs.jpg", 
+        "category":"foodItem", 
+        "rating": 4.5, 
+        "qty": 1,
+        "seller":"Mumbai Retail"
     }
 
 ]
