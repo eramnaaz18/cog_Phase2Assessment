@@ -1,3 +1,4 @@
+/*the styling for contact form*/
 #form{
     padding: 10px;
     border-radius: 5px;
@@ -9,6 +10,7 @@
     margin-bottom: 30px;
 }
 
+/*heading style*/
 h1{
     margin-top: 20px;
     text-align: center;
@@ -17,17 +19,18 @@ h1{
 
 }
 
+/*uniform styling for all labels used in the form*/
 label{
     font-weight: bold;
     margin-right: 5px;
 }
 
+
+/*button styling*/
 button{
     text-align: center;
     font-weight: bold;
-    
-   
-    
+  
 }
 
 button:disabled{
@@ -35,6 +38,8 @@ button:disabled{
 
 }
 
+
+/*styling separately for submit and reset buttons*/
 #submit{
     margin-right: 10px;
     border-radius: 10px;

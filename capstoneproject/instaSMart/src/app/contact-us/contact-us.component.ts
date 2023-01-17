@@ -11,11 +11,14 @@ export class ContactUsComponent {
 
   titleMain='Contact Form';
   contactForm:FormGroup;
+
+  //this is displayed in the template as options of select list
   stores: any = ['store1', 'store2', 'store3', 'store4'];
 
 
    constructor(private formBuilder:FormBuilder, private router: Router) {
     
+    //reactive form with validations
     this.contactForm=this.formBuilder.group({
          
          firstname:['',[Validators.required,Validators.minLength(3),Validators.maxLength(20), Validators.pattern("^[A-Za-z]+$")]],
@@ -44,17 +47,23 @@ export class ContactUsComponent {
     ngOnInit(): void {
     }
   
+
+    //after submitting form it should redirect to home page
     onSubmit(){
       console.log(this.contactForm.value);
       this.router.navigate(['']);
     }
 
+
+    //resets the form value
     resetForm() {
     
       this.contactForm.reset();
       console.log("Form has been reset")
      }
-   
+
+
+     //for changing the selected option value
      changeStore(e: any) {
       this.store?.setValue(e.target.value, {
         onlySelf: true,

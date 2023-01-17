@@ -10,35 +10,12 @@ import { IProduct } from "src/app/products/products.model";
   styleUrls: ['./cart-list.component.css']
 })
 export class CartListComponent implements OnInit {
-  /* items:IProduct[]=[];
-  checkoutForm!: FormGroup;
-  count=0;
-  constructor(
-    private cartService: CartService,
-    private formBuilder: FormBuilder
-  ) { }
-
-  ngOnInit() {
-    this.items = this.cartService.getItems();
-    this.checkoutForm = this.formBuilder.group({
-      name: '',
-      address: ''
-    });
-    this.count= this.items.length;
-    console.log(this.count);
-  }
-
-  onSubmit(customerData:NgForm) {
-    // Process checkout data here
-    console.warn('Your order has been submitted', customerData);
-
-    this.items = this.cartService.clearCart();
-    this.checkoutForm.reset();
-  } */
-
 
   public products : IProduct[] = [];
   public grandTotal !: number;
+
+  //injects the cartService so that we can use getProducts() to get products in the cart
+  //and also calculate total based on getTotalPrice()
   constructor(private cartService : CartService) { }
 
   ngOnInit(): void {
@@ -49,27 +26,34 @@ export class CartListComponent implements OnInit {
     })
   }
 
+  //calculates total based on any other increment or decrement in the cart
   total() {
     return this.products.reduce((sum, prod) => sum += prod.price*prod.qty ,0)
   }
 
+  //removes the item as a single unit at once
   removeItem(item: IProduct){
     this.cartService.removeCartItem(item);
   }
+
+  //removes all items at once
   emptycart(){
     this.cartService.removeAllCart();
   }
+
+  //increments the product quantity in the cart
   increase(product: IProduct){
     product.qty++;
   
    }
   
+   //decrements the product quantity in the cart
    decrease(product:IProduct){
     if(product.qty>1){
       product.qty--;
     }
     else{
-      //alert("We cannot decrement more");
+      //if the product quantity is 1 it should completely remove the product instead of taking negative value
       this.removeItem(product);
     }
    }

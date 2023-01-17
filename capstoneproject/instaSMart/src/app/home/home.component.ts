@@ -9,6 +9,7 @@ export class HomeComponent {
 
   constructor(){}
 
+  //this has 5 slider images that is inputted in carousel component
   public slides = [
     { src: "../../assets/images/image.jpg" },
     { src: "../../assets/images/image1.jpg"  },

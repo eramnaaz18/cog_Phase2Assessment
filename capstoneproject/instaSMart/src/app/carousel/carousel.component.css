@@ -1,6 +1,8 @@
 :host {
     flex: 1;
 }
+
+/*displays the carousel in the centre of the page*/
 .carousel {
     position: relative;
     height: 100%;
@@ -21,6 +23,9 @@
 .slide:hover {
     transform: scale(1.025);
 }
+
+
+ /* Positioning of the previous and next buttons */
 .control {
     border: none;
     background-color: transparent;
@@ -41,7 +46,7 @@
   
 }
 
- /* Positioning of the previous and next buttons */
+
 .control:hover, .control:focus {
     opacity: 1;
 }

@@ -19,10 +19,13 @@ describe('AboutUsComponent', () => {
     fixture.detectChanges();
   });
 
+  //creation of component
   it('should create', () => {
     expect(component).toBeTruthy();
   });
 
+
+  //rendering of page title
   it('should render page title as About Us',() =>{
     component.pageTitle = "About Us";
     fixture.detectChanges();

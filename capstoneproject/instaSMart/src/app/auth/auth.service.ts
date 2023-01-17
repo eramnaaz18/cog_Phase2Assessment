@@ -9,6 +9,7 @@ import { User } from "../user/user";
 })
 export class AuthService{
 
+    //takes in the users from in-memory-db (web-api)
     url='/api/users';
     currentUser!:User |null;
     redirectToUrl!:string;
@@ -20,6 +21,7 @@ export class AuthService{
 
     constructor(private http:HttpClient){}
 
+    //it fetches all the users from the db and taps data into users[]
     fetchAllUsers():Observable<User[]>{
       return this.http.get<User[]>(this.url).pipe(
 
@@ -38,9 +40,14 @@ export class AuthService{
 
      }
 
+
+     //this is to validate the entry of user
+     //it checks if user data entered is valid against the details stored in db
+     //if the user is valid, then its details are stored in sessionStorage and
+     //allowed to navigate through various links that requires admin priviledges/successful login
      validateUser(user:any,users:User[]):boolean{
 
-      console.log('validating theuser',user)
+      console.log('validating the user',user)
       user={...user};
       this.foundIndex=users.findIndex(u=>(u.userName==user.userName && u.password == user.password));
       
@@ -50,17 +57,17 @@ export class AuthService{
         this.currentUser=this.users[this.foundIndex];
         console.log('found the user ',this.users[this.foundIndex])
         sessionStorage.setItem('loggedInUser',JSON.stringify(this.currentUser));
-       this.isValid=true;
-       this.isLoggedIn=true;
-       if(this.currentUser.isAdmin){
-        this.isAdminType = true;
-        sessionStorage.setItem('isAdmin','true');
-       }
-       else if(!this.currentUser.isAdmin){
-        this.isAdminType = false;
-        sessionStorage.setItem('isAdmin','false');
-       }
-       
+        this.isValid=true;
+        this.isLoggedIn=true;
+        if(this.currentUser.isAdmin){
+          this.isAdminType = true;
+          sessionStorage.setItem('isAdmin','true');
+        }
+        else if(!this.currentUser.isAdmin){
+          this.isAdminType = false;
+          sessionStorage.setItem('isAdmin','false');
+        }
+        
        sessionStorage.setItem('isLogged','true');
        
         return true;
@@ -69,7 +76,7 @@ export class AuthService{
 
     }
 
-
+    //it logs out the currently logged user by removing the detail from sessionStorage
     logOut():void{
       sessionStorage.removeItem('loggedInUser');
         this.currentUser=null;
@@ -78,6 +85,7 @@ export class AuthService{
     }
 
     
+    //checks if currently logged in user is admin or not
     isAdmin():boolean{
       console.log(this.currentUser)
         if(this.currentUser)

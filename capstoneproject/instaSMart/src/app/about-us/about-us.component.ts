@@ -7,6 +7,7 @@ import { Component } from '@angular/core';
 })
 export class AboutUsComponent {
 
+  //this will be interpolated in template (one-way binding)
   pageTitle = "About Us"
 
 }

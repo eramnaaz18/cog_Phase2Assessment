@@ -1,7 +1,7 @@
+<!-- Checks if the cart is empty and displays empty cart image in the background-->
 <div *ngIf="products.length ==0">
   <div class="container">
       <div class="card">
-          <!-- <h5 class="card-title">My Cart</h5> -->
       </div>
       <div class="center">
         <img src="../../../assets/images/empty-cart.png" alt="empty-cart">
@@ -12,6 +12,8 @@
   </div>
 </div> 
 
+
+<!-- Displays the table with all cart items when products exist in the cart-->
 <div >
   <div class="container">
       <div class="card-table">
@@ -37,10 +39,6 @@
                           <td style="width: 12%;">{{item.brand}}</td>
                           <th style="width: 12%;">{{item.price}}</th>
                           <td style="width: 25%;">
-                            <!-- <button mat-icon-button aria-label="Example icon button with a plus icon" (click)="increase(item)">
-                              <mat-icon aria-label="Example icon button with a add to cart icon">add_box</mat-icon>
-                            </button> -->
-                           <!--  <input type="number" value="{{item.qty}}" id="quant"> -->
                             <a mat-icon-button
                             (click)="increase(item)">
                             <mat-icon aria-label="Example icon button with a add to cart icon">add_box</mat-icon>
@@ -51,7 +49,6 @@
                             <mat-icon aria-label="Example icon button with a add to cart icon">remove_box</mat-icon>
                         </a>
                            
-                          
                            </td>
                          <td style="width: 12%;">{{item.qty * item.price}}</td> 
                           <td>
@@ -61,11 +58,18 @@
                               </button>
                             </td>
                       </tr>
+
+                      <!--Displays the three important buttons
+                      1. Empty Cart: To empty entire cart at once (it is hidden if product length is 0)
+                      2. Continue Shopping: No matter how many products in cart, this is always enabled to allow users continue with
+                         shopping without any restrictions
+                      3. Checkout: This is disabled if cart is empty else when product exists, it gets enabled
+                    There is also table data of total amount of cart items which remains hidden if cart is empty-->
                     <tr>
                           <td colspan="4"></td>
                           <td><button (click)="emptycart()" class="btn btn-danger" [hidden]="!products.length">Empty Cart</button></td>
                           <td><button routerLink="/products" class="btn btn-primary" >Continue Shopping</button></td>
-                          <td><button class="btn btn-success" [disabled]="!products.length" [routerLink]="['payment']">Checkout</button></td>
+                          <td><button class="btn btn-success" [disabled]="!products.length" [routerLink]="['payment']" id="checkout">Checkout</button></td>
                           <td [hidden]="!products.length"><strong>Grand Total : {{total() | currency:'INR'}}</strong></td>
                       </tr>
                   </tbody>

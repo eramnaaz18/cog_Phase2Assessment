@@ -1,4 +1,4 @@
-
+/*invoice div for table*/
 #invoice{
     padding-top: 20px;
     margin-top: 10px;
@@ -6,12 +6,15 @@
     
 }
 
+/*styling for payment div*/
 .payment{
     width: 100%;
     margin-bottom: 10px;
     
 }
 
+
+/*button inside payment div with uniform styling*/
 .payment button{
     margin-left: 10px;
     margin-right: 10px;
@@ -19,6 +22,8 @@
 
 }
 
+
+/*heading*/
 h3{
     text-decoration:underline;
     text-align: center;

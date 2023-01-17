@@ -9,11 +9,17 @@ import { AuthService } from "./auth.service";
 
 export class AuthGuard implements CanActivate{
     constructor(private authService:AuthService,private router:Router){}
+
+  //this method returns true or false status for logged in
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
       return this.checkLoggedIn(state.url);
 
 
 }
+
+//this method returns true or false by checking if user is logged in or has admin service
+//this enables us to use the logged in status and admin status in later part of project
+//which requires some admin rights and logged in user functionalities
  checkLoggedIn(url:string):boolean{
 
     if(this.authService.isAdmin() || this.authService.isLoggedIn){

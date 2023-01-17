@@ -1,6 +1,7 @@
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { By } from '@angular/platform-browser';
 
 import { PaymentComponent } from './payment.component';
 
@@ -29,4 +30,5 @@ describe('PaymentComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+  
 });

@@ -1,3 +1,4 @@
+<!--Displays the table with all details of amount to be paid for the purchase made-->
 <div class="invoice" style="font-family: 'Courier New', Courier, monospace;">
     <div class="table-responsive">
       <h3>Invoice generated</h3>
@@ -26,7 +27,6 @@
                   <td>{{product.price |currency:'INR':'symbol'}}</td>
 
                   <td>{{product.category | uppercase}}</td>
-                  <!-- <td>{{product.rating}}</td> -->
                   <td> {{product.qty}} </td>
                   <td>{{product.qty * product.price |currency:'INR':'symbol'}}</td>
                   </tr>
@@ -41,9 +41,10 @@
          </div>
   </div>
 
+<!--Button to proceed with payment-->
 <button class="btn btn-success" (click)="payment()" style="margin-left:10px;">Proceed to Payment</button>
 
-
+<!--This div is shown only if user clicks on payment button-->
 <div *ngIf="showDiv" class="payment">
     <button class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#exampleModal">Pay with NetBanking</button>
     <button class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#exampleModal">Pay with Card</button>
@@ -78,6 +79,7 @@
                 <label for="exampleInputCardHolder" class="form-label">Card Holder Name:</label>
                 <input type="text" class="form-control" id="exampleInputCardHolder">
               </div>
+            <!--Need to make sure that modal closes on click of submit button and takes to home page-->
             <button type="button" class="btn btn-primary" [routerLink]="['']" (click)="onSubmit()" data-bs-dismiss="modal">Let's Checkout</button>
           </form>
         </div>

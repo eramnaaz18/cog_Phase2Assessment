@@ -1,23 +1,26 @@
-
+/*the parent div for flex layout*/
  .container{
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
 }
 
-
+/*the two children divs*/
 .child{
     flex: 1 0 0;
     padding: 5px;
     margin: 2px;
     
 }
+
+/*the parent div for inner children of child div*/
 .inner_child{
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
 }
 
+/*the children divs of inner child*/
 .ichild{
     flex: 1 0 0;
     padding: 10px;
@@ -28,11 +31,15 @@
     margin-bottom: 5px;
     box-shadow: 5px 2px lightgrey;
 }
+
+/*divs are centrally aligned*/
 .center {
     padding: 70px 0;
     
   }
 
+
+/*background image*/
 img{
 
     height: auto;
@@ -40,6 +47,8 @@ img{
     padding: 10px;
     padding-left: 15%;
   }
+
+/*headings*/  
 h1{
     font-size: 48px;
     color: #ffc62a;
@@ -48,6 +57,9 @@ h1{
 h2{
     color: #f0b208;
 }
+
+
+/*responsiveness*/
 @media(max-width:800px){
     .container{
         

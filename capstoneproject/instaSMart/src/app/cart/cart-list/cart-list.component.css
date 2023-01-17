@@ -1,3 +1,4 @@
+/*The background is displayed in card layout*/
 .card {
     height: 60vh;
     margin: 25px;
@@ -14,11 +15,13 @@
     margin: 20px 0px;
 }
 
+/*For the headings*/
 h4,
 h6 {
     font-weight: 400;
 }
 
+/*centrally align the content*/
 .center {
     position: absolute;
     top: 50%;
@@ -27,6 +30,8 @@ h6 {
     text-align: center;
 }
 
+
+/*the table of products in the cart*/
 .card-table {
     position: relative;
     display: flex;
@@ -39,6 +44,7 @@ h6 {
     border-radius: .25rem;
 }
 
+/*The different buttons in the cart page*/
 .center .btn {
     font-size: 14px !important;
     margin-top: 20px !important;

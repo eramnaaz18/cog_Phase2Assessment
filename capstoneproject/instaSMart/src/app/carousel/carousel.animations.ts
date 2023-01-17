@@ -11,7 +11,7 @@ import {
 export const scaleIn = animation([
     style({ opacity: 0, transform: "scale(0.5)" }), // start state
     animate(
-      "{{time}} cubic-bezier(0.785, 0.135, 0.15, 0.86)",
+      "{{time}} cubic-bezier(0.785, 0.135, 0.15, 0.86)", //time is interpolated from the component class
       style({ opacity: 1, transform: "scale(1)" })
     )
   ]);

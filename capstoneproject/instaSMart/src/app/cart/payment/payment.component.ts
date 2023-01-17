@@ -12,8 +12,10 @@ import { IProduct } from 'src/app/products/products.model';
 export class PaymentComponent {
   public cart : IProduct[] = [];
   public grandTotal !: number;
+
   constructor(private cartService : CartService, private formBuilder: FormBuilder, private router: Router) { }
 
+  //on init all the products from cartService is subscribed and also the grandTotal amount of these products
   ngOnInit(): void {
     this.cartService.getProducts()
     .subscribe(res=>{
@@ -21,35 +23,29 @@ export class PaymentComponent {
       this.grandTotal = this.cartService.getTotalPrice();
     })
 
-    this.paymentForm = this.formBuilder.group({
-      cardNumber: ['', [Validators.required]],
-      expiryDate: ['',[Validators.required]],
-      cvv : ['',[Validators.required]],
-      cardHolder: ['', [Validators.required]],
-      });
   }
 
+  //calculates total amount inside cart item increment decrement
   total() {
     return this.cart.reduce((sum, prod) => sum += prod.price*prod.qty ,0)
   }
 
 
+  //for the div section we want to display only if value is true
   showDiv: boolean= false;
+
+
+  //this enables the div section to be displayed
   payment(){
     this.showDiv = true;
   }
 
-
-  paymentForm!: FormGroup;
-
-
-//Add user form actions
-get f() { return this.paymentForm.controls; }
-onSubmit() {
-  
-    alert("Your products will be delivered soon!");
-    this.cart.length = 0;
+  //it empties the cart when user pays for the cart items
+  onSubmit() {
     
-}
+      alert("Your products will be delivered soon!");
+      this.cart.length = 0;
+      
+  }
 
 }

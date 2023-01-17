@@ -228,10 +228,17 @@ describe('ContactUsComponent', () => {
     const submit = fixture.debugElement.query(By.css("#submit"));
     submit.nativeElement.click();
     fixture.detectChanges();
-    fixture.whenStable().then(()=>{
-      expect(location.path()).toBe('');
-    })
+    expect(location.path()).toBe('');
+
 });
+
+
+//testing type of submit button
+it('should have type of submit button as submit',()=>{
+  const submit: HTMLButtonElement = fixture.nativeElement.querySelector('#submit');
+  fixture.detectChanges();      
+  expect(submit.type).toBe('submit')
+})
 
 
 
